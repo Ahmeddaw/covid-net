@@ -25,7 +25,7 @@ import pandas as pd
 from sklearn.metrics import confusion_matrix
 import tensorflow as tf
 
-from data import BalanceDataGenerator
+# from data import BalanceDataGenerator
 
 
 # We will create a checkpoint which has initial values for these variables
