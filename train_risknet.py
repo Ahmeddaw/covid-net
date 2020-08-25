@@ -158,7 +158,14 @@ if __name__ == "__main__":
         stratification = np.array(args.stratification)
     num_classes = len(stratification)
 
-    stratify = lambda offset: np.where(offset >= stratification)[0]
+
+    def stratify(offset):
+        # np.where(offset >= stratification)[0]
+        s = np.where(offset >= stratification)[0]
+        if len(s) > 1:
+            return s[-1]
+        return s
+
 
     # Read CSV of dataset
     assert os.path.exists(args.chestxraydir), "please clone " \
