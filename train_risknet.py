@@ -69,7 +69,10 @@ def parse_split(split_txt_path: str) -> Tuple[List[str], List[int]]:
             patient = csv[csv["filename"] == image_file]
             recorded_offset = patient['offset'].item()
             if not np.isnan(recorded_offset):
+                print(int(recorded_offset))
                 offset = stratify(int(recorded_offset))
+                print("--------- offset -----------")
+                print(offset)
                 image_path = os.path.abspath(
                     os.path.join(args.chestxraydir, 'images', image_file))
                 assert os.path.exists(image_path), "Missing file {}".format(image_path)
@@ -154,7 +157,8 @@ if __name__ == "__main__":
     else:
         stratification = np.array(args.stratification)
     num_classes = len(stratification)
-    stratify = lambda offset: np.where(offset >= stratification)[0][-1]
+
+    stratify = lambda offset: np.where(offset >= stratification)[0]
 
     # Read CSV of dataset
     assert os.path.exists(args.chestxraydir), "please clone " \
