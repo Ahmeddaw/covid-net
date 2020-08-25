@@ -68,22 +68,23 @@ def parse_split(split_txt_path: str) -> Tuple[List[str], List[int]]:
         if diagnosis == 'COVID-19':
             patient = csv[csv["filename"] == image_file]
 
-            print(patient['offset'])
-            print("*************")
-            print(patient['offset'].empty)
-            print("*************")
-            print(patient['offset'].isnull().item())
-            print("*************")
-            print(patient['offset'].item())
-            print("=====------====")
-            recorded_offset = patient['offset'].item()
-            if not np.isnan(recorded_offset):
-                offset = stratify(int(recorded_offset))
-                image_path = os.path.abspath(
-                    os.path.join(args.chestxraydir, 'images', image_file))
-                assert os.path.exists(image_path), "Missing file {}".format(image_path)
-                files.append(image_path)
-                labels.append(offset)
+            # print(patient['offset'])
+            # print("*************")
+            #
+            # print("*************")
+            # print(patient['offset'].isnull().item())
+            # print("*************")
+            # print(patient['offset'].item())
+            # print("=====------====")
+            if not print(patient['offset'].empty):
+                recorded_offset = patient['offset'].item()
+                if not np.isnan(recorded_offset):
+                    offset = stratify(int(recorded_offset))
+                    image_path = os.path.abspath(
+                        os.path.join(args.chestxraydir, 'images', image_file))
+                    assert os.path.exists(image_path), "Missing file {}".format(image_path)
+                    files.append(image_path)
+                    labels.append(offset)
     return files, labels
 
 
