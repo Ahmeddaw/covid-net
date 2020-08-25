@@ -70,7 +70,8 @@ def parse_split(split_txt_path: str) -> Tuple[List[str], List[int]]:
 
             print(patient['offset'])
             print("*************")
-            print(patient['offset'].item())
+            print(patient['offset'].get())
+            print(type(patient['offset']))
             print("=====------====")
             recorded_offset = patient['offset'].item()
             if not np.isnan(recorded_offset):
