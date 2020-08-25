@@ -72,7 +72,7 @@ def parse_split(split_txt_path: str) -> Tuple[List[str], List[int]]:
             print("*************")
 
             print(patient['offset'].isnull().item())
-            print(patient['offset'].empty())
+            print(patient['offset'].empty)
             print(patient['offset'].item())
             print("=====------====")
             recorded_offset = patient['offset'].item()
