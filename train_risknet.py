@@ -67,12 +67,14 @@ def parse_split(split_txt_path: str) -> Tuple[List[str], List[int]]:
         _, image_file, diagnosis, _ = split_entry.strip().split()  # TODO: txts should just contain ids
         if diagnosis == 'COVID-19':
             patient = csv[csv["filename"] == image_file]
-            recorded_offset = patient.get('offset', None)
+
+            print(patient['offset'])
+            print("*************")
+            print(patient['offset'].item())
+            print("=====------====")
+            recorded_offset = patient['offset'].item()
             if not np.isnan(recorded_offset):
-                print(int(recorded_offset))
                 offset = stratify(int(recorded_offset))
-                print("--------- offset -----------")
-                print(offset)
                 image_path = os.path.abspath(
                     os.path.join(args.chestxraydir, 'images', image_file))
                 assert os.path.exists(image_path), "Missing file {}".format(image_path)
