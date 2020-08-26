@@ -232,7 +232,9 @@ if __name__ == "__main__":
 
         # Get some I/O tensors
         names = [n.name for n in graph.as_graph_def().node]
-        print(names)
+        for n in graph.as_graph_def().node:
+            print(n.name)
+            print("---===---")
         image_tensor = graph.get_tensor_by_name(INPUT_TENSOR_NAME)
         labels_tensor = graph.get_tensor_by_name("dense_3_target:0")
         sample_weights = graph.get_tensor_by_name(SAMPLE_WEIGHTS)
